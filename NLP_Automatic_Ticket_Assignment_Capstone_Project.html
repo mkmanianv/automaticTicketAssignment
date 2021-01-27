@@ -13092,17 +13092,24 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Data handling</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+
+<span class="c1"># numerical calculation</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Utilities</span>
 <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">nltk</span>
 <span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># NLP toolkits</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
 <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">RegexpTokenizer</span>
 <span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span><span class="p">,</span><span class="n">LancasterStemmer</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
+<span class="c1"># Tranditional modelling</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">confusion_matrix</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">StackingClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
@@ -13110,11 +13117,16 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">BaggingClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># Tools &amp; Evaluation metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">confusion_matrix</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_recall_fscore_support</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
 <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
 <span class="kn">from</span> <span class="nn">textblob</span> <span class="kn">import</span> <span class="n">TextBlob</span>
 <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
@@ -13129,6 +13141,7 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">gensim</span>
 <span class="kn">import</span> <span class="nn">gensim.corpora</span> <span class="k">as</span> <span class="nn">corpora</span>
 <span class="kn">from</span> <span class="nn">gensim.utils</span> <span class="kn">import</span> <span class="n">simple_preprocess</span>
+
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;reuters&#39;</span><span class="p">)</span> <span class="c1"># Downloading corpus</span>
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span> <span class="c1"># Downloading stopwords</span>
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span> <span class="c1"># Downloading tokenizer</span>
@@ -13166,6 +13179,14 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mount the google drive, set the project path to current working directory.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13228,7 +13249,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticket_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;input_data.xlsx&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the dataset into Pandas Dataframe called &#39;ticket_df&#39;</span>
+<span class="n">ticket_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;input_data.xlsx&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13474,6 +13496,15 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Ticket dataset divided into 2 parts. Dependent features like Short Description, Description and Caller; 
+Target variable is Assignment group</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Find-any-Null-values-in-the-data">Find any Null values in the data<a class="anchor-link" href="#Find-any-Null-values-in-the-data">&#182;</a></h1>
 </div>
 </div>
@@ -13643,6 +13674,19 @@ dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Observations:">Observations:<a class="anchor-link" href="#Observations:">&#182;</a></h4><ul>
+<li>The ticket dataset contains 8500 rows and 4 columns</li>
+<li>All 4 columns are of type 'Object'with text information</li>
+<li>There are 9 null values in Short description and 1 null in Description columns</li>
+<li>We have 83 duplicate rows in the dataset</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Analyze-the-distribution-of-Assignment-Group">Analyze the distribution of Assignment Group<a class="anchor-link" href="#Analyze-the-distribution-of-Assignment-Group">&#182;</a></h2>
 </div>
 </div>
@@ -13726,6 +13770,14 @@ Name: Assignment group, dtype: float64</pre>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In Target variable 'Assignment group', GRP_0 has maximum rows.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13973,6 +14025,14 @@ Name: Assignment group, dtype: float64</pre>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Total Caller count: 2950</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14270,7 +14330,11 @@ Name: Caller, dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Observation: The most frequent caller has raised tickets for a variety of Assignment groups.</p>
+<h4 id="Observation:">Observation:<a class="anchor-link" href="#Observation:">&#182;</a></h4><ul>
+<li>There are 2950 callers have been captured in the entire dataset. </li>
+<li>The most frequent caller has raised tickets for a variety of Assignment groups.</li>
+<li>15 callers are identified to be involved in raising tickets for multiple assignment groups</li>
+</ul>
 
 </div>
 </div>
@@ -14331,7 +14395,11 @@ Name: Caller, dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Observation: The above plot shows the distribution of samples of GRP_0 vs all other groups combined. We need to fix the imbalance in the data using data augmentation techniques</p>
+<h4 id="Observation:">Observation:<a class="anchor-link" href="#Observation:">&#182;</a></h4><ul>
+<li>The above plot shows the distribution of samples of GRP_0 vs all other groups combined. </li>
+<li>Large no of entries in GRP_0 (having count of 3976 entries) which account for ~50% of the data</li>
+<li>We need to fix the imbalance in the data using data augmentation techniques</li>
+</ul>
 
 </div>
 </div>
@@ -14351,6 +14419,14 @@ Name: Caller, dtype: int64</pre>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get Description length and word count details and add columns into ticket dataframe</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14822,6 +14898,14 @@ Name: ld_len, dtype: int64</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Short Description Length Plot: 12 tickets having less than 3 and 4 characters respectively and 8 tickets having 0 length</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[34]:</div>
@@ -14873,6 +14957,14 @@ Name: ld_len, dtype: int64</pre>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Description Length Plot: 40+ tickets having less than 3 characters</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -15058,6 +15150,24 @@ Name: ld_len, dtype: int64</pre>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Common class/methods for data cleansing</p>
+<ul>
+<li>Convert each character in a sentence to lowercase character</li>
+<li>Remove HTML Tags</li>
+<li>Remove Email contacts</li>
+<li>Remove punctuations, hyperlinks</li>
+<li>Remove stopwords</li>
+<li>Remove common words like com, hello</li>
+<li>Remove New line characters</li>
+<li>Stemming was causing invalid words, hence used a lemmatizer</li>
+</ul>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[37]:</div>
@@ -15159,7 +15269,8 @@ Name: ld_len, dtype: int64</pre>
 <div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticket_df</span><span class="o">=</span><span class="n">preProcessing</span><span class="o">.</span><span class="n">mergeColumns</span><span class="p">(</span><span class="n">ticket_df</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># apply data cleansing on Description column</span>
+<span class="n">ticket_df</span><span class="o">=</span><span class="n">preProcessing</span><span class="o">.</span><span class="n">mergeColumns</span><span class="p">(</span><span class="n">ticket_df</span><span class="p">)</span>
 <span class="n">ticket_df</span><span class="p">[</span><span class="s1">&#39;desc_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ticket_df</span><span class="p">[</span><span class="s1">&#39;desc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">preProcessing</span><span class="o">.</span><span class="n">data_clean</span><span class="p">)</span>
 </pre></div>
 
