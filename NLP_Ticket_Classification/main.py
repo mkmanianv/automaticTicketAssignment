@@ -5,7 +5,7 @@ from PreProcessing import PreProcessing
 
 application = Flask(__name__)
 
-# pipeline = load("text_classification_spyder.joblib")
+clf = load("Automatic_Ticket_Assignment_Capstone_Project.joblib")
 
 def readRequest(text):
     label = 0
