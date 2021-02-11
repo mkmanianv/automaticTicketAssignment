@@ -1,0 +1,1 @@
+jupyter nbconvert --to HTML NLP_Automatic_Ticket_Assignment_Capstone_Project.ipynb
