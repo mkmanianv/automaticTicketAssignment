@@ -14,9 +14,13 @@ le = load(open('classes.pkl', 'rb'))
 def readRequest(text):
     preprocessing = PreProcessing()
     clean_text = preprocessing.data_clean(text)
+    if len(clean_text)==0:
+        return "Please enter valid input"
     predict_value = clf.predict_proba([clean_text])
+    print(predict_value)
     maxValue=np.amax(predict_value)
     argMax = np.argmax(predict_value)
+    print("max value: "+str(maxValue))
     if(maxValue>0.5):
         return "Your ticket is assigned to: "+le.inverse_transform([argMax])[0]
     else:
