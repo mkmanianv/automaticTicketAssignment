@@ -24,7 +24,7 @@ def readRequest(text):
     if(maxValue>0.5):
         return "Your ticket is assigned to: "+le.inverse_transform([argMax])[0]
     else:
-        return "Your ticket is assigned to: OTHERS"
+        return "Your ticket is not assigned"
 
 
 @application.route('/ticketclassification', methods=['POST', 'GET'])
